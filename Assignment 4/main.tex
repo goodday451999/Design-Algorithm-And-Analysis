@@ -1,0 +1,171 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+
+
+\begin{document}
+\title{Write an efficient algorithm to solve a cubic equation of the form $ x^3-n = 0$, for some input value of n, by using a repetitive algorithm. Draw a graph of accuracy/error in the answer vs. total number of repetitions. Do the necessary experimentation and analysis with your algorithm.}
+
+\author{\IEEEauthorblockN{Parag Parihar}
+\IEEEauthorblockA{Roll No:- IIT2016095\\
+iit2016095@iiita.ac.in}
+\and
+\IEEEauthorblockN{Rakshit Sai}
+\IEEEauthorblockA{Roll No:- IIT2016126\\
+iit2016126@iiita.ac.in}
+\and
+\IEEEauthorblockN{Adarsh Agrawal}
+\IEEEauthorblockA{Roll No:- IIT2016516\\
+iit2016516@iiita.ac.in}
+\and
+\IEEEauthorblockN{Nilotpal Pramanik}
+\IEEEauthorblockA{Roll No:- IRM2016501\\
+irm2016501@iiita.ac.in}
+\thanks{Manuscript received February 2, 2018.}}
+
+\markboth{Assignment-1, IDAA432C; B.Tech.(IT)}
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Journals}
+
+\maketitle
+
+\IEEEpeerreviewmaketitle
+
+\section{\textbf{Introduction and Literature Survey}}
+The given task for us was to design and analyze a problem. The problem given was to generate an efficient algorithm  to solve a cubic equation of the form $x^3-n=0$, for some input value n, by using a repetitive algorithm. Then we have to draw the graph for accuracy/error in the answer vs. total number of repetitions. The actual deal with the problem is that there won’t be any direct equation given, we will have to scan the number n in the equation that is the constant in the equation and then calculate the cube root of the equation with the repetitive algorithm which must be as efficient as it could be. The difficult part here is the repetitive algorithm. Then we have to plot the graph between the error/accuracy of the root vs. the number of iterations so as to know how close is the answer for each iteration. Basically the first iteration gives us a high error answer than the last one because that is how we try to reduce the error in the answer so it is very obvious.  
+\section{\textbf{Algorithm Design}}
+According to the problem we have to generate an efficient algorithm  to solve a cubic equation of the form $x^3-n=0$, for some input value n, by using a repetitive algorithm.\\
+
+As an input we are going to take an input "n".And we have initialize two variable left and right with -1000000 and 1000000 respectively to define the range of the root.\\
+
+Then through while loop we will check weather the difference between the left and right is less than or equal to 0.0000000000001 much or not.If true then we will print just the mean of those values as the answer and break.\\
+
+And then to divide the difference of range in 10 parts we are storing the value in d.And through for loop we will traverse till 10  to assign the value $(left + d*i)^3 - n$ in ans1 and $(right + d*(i+1))^3 - n$ in ans2.Then further check weather the ans1 is 0.0 or not if true then we will print $left+d*(i)$ as the answer and stop through break.And similarly follow same logic for ans2 and print $left+d*(i+1)$ as the answer of the given problem.\\
+
+And for $ans1 < 0$ and for $ans2 > 0$ we have to swap the left and right ranges follow the logic to solve and through break end the loop.\\
+
+
+\begin{algorithm}[H]
+\caption{}
+\end{algorithm}
+\begin{algorithmic}[1]
+\STATE \textbf{INPUT: \textit{n}}
+\STATE \textbf{OUTPUT: Accurate value of cube root}
+\STATE \textbf{Initialization} : $\textit{left} \gets -1000000$ $\textit{right} \gets 1000000$ 
+\WHILE{TRUE}
+	\IF{$right-left \leq 0.0000000000001$}
+   	\STATE print answer ($\frac{(right+left)}{2}$)
+    \STATE \textbf{break}
+    \ENDIF
+    \STATE $d \gets (right-left)/10 $
+    \FOR{$i=0 \ to \  10$}
+    	\STATE $ans1 \gets (left + d*i)^3 - n$
+        \STATE $ans2 \gets (right+ d*(i+1))^3-n$
+         \IF{$ans1 = 0.0$}
+        	\STATE $flag \gets 1$
+            \STATE $ans \gets left+d*(i)$
+            \STATE print \textbf{ans}
+            \STATE \textbf{break}
+        \ENDIF
+         \IF{$ans2 = 0.0$}
+        	\STATE $flag \gets 1$
+            \STATE $ans \gets left+d*(i+1)$
+            \STATE print \textbf{ans}
+            \STATE \textbf{break}
+        \ENDIF
+        \IF{$ans1<0 \  and \  ans2>0$}
+        	\STATE $tmp \gets left$
+            \STATE $left \gets left+d*i$.
+            \STATE $right \gets tmp+d*(i+1)$
+            \STATE \textbf{break}
+        \ENDIF
+    \ENDFOR
+    \IF{$flag=1$}
+    	\STATE \textbf{break}
+    \ENDIF
+\ENDWHILE
+\end{algorithmic}
+\section{\textbf{Analysis and Discussion}}
+\subsection{\textbf{Best Case}} : 
+When we will give an input of $x^3  + 10^{18} = 0$, the root will be $-10^6$ , and since on dividing by 10, the first segment we have will be from $[-10^6 to (-10^6 + 2*10^5)]$ which itself includes the root, hence it will break there only, so both while and for loop will run only 1 time.
+So in the best case the no of instructions = 42.
+\subsection{\textbf{Worst Case}} : 
+The worst case will be when we will have $x^3  - n = 0$, where $n >> 0$, there will be a n for which the while loop and for loop will run the most until we reach the precision of 10-12 , in such a case the while loop will run 20 times and for loop 10 times to find value upto 12 decimal places.
+So in worst case the no of instructions = 5986.
+\subsection{\textbf{Average Case}} : 
+Since our complexity not only depends on input, but on several other factors like amount of precisions, in how many parts we are dividing the algorithm,  so cannot find a relation between given n and total no of instructions.Still,
+Total no of instructions in average case is between 42 and 5986.
+
+\subsection{\textbf{Graph for error vs. no. of iterations}} :
+
+\includegraphics[height =  6.00cm,width = \linewidth.png}
+
+\section{\textbf{Experimental Analysis}}
+We revised the commands and basic functions of \textbf{GNUPlot}
+to plot the time complexity analysis graphs and other relevant
+analysis related to our algorithm.
+\\
+\	While making this report we also learnt the basics of
+making reports using LATEX in IEEE format using \textbf{IEEEtran class}.
+\\
+\\
+For making the graph between \textbf{error vs no. of iterations}, we have taken any random number.
+And for every iterations, we have tried to find value of \textbf{CUBIC ROOT}. After getting cubic root for every iteration we have made, we have generated corresponding \textbf{error}. From the formula
+\\
+\\
+$$ \%error = \left|{\frac{exact\_value - aproximate\_ value}{exact\_value}}\right|*100$$
+\\
+$ \textbf{exact\_value}  = given\  number(of\  which\  we \ have \ to \ find \ cubic\  root) $
+\\
+$ \textbf{approximate\_value} = cube \ of \ output\  value $
+\\
+\\
+Suppose the  number of which we have to find cubic root is 100.Table for the error after every iteration is:-
+\begin{table}[H]
+\begin{center}
+    \label{tab:table1}
+    \begin{tabular}{|c|c|} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+    \hline
+      \textbf{iteration} & \textbf{error} 
+      \\
+      \hline
+       2 & 5.000000\\
+      \hline
+      3 & 3.823000\\
+      \hline
+      4 & 0.544625\\
+      \hline
+      5 & 0.038053\\
+      \hline
+	  6 & 0.005741\\
+      \hline
+	  7 & 0.000075\\
+      \hline
+      8 & 0.000011\\
+      \hline
+	   9 & 0.000004\\
+       \hline
+       10 & 0.000000\\
+       \hline
+	   11 & 0.000000\\
+	   \hline
+	    12 & 0.000000\\
+		\hline
+	    13 & 0.000000\\
+        \hline
+    \end{tabular}
+\end{center}
+\end{table}
+As we can see here for 2nd and 3rd iteration there is relatively comparable error but after 3rd iteration error decreases exponentially, as we can see from graph.
+\section{\textbf{Conclusion}}
+%In the assignment we were given to find the roots of a cubic equation of the form $x^3 - n = 0$ using repetitive method.
+Through different experimental studies we have tried to analyze this algorithm perfectly and properly using the ‘Divide into ten’ repetitive algorithm. By finding the root of the equation upto a given decimal number we found out that the time complexity, i.e., total no of instructions in best case is equal to 42 and in the worst case it is equal to 5986 as depicted in the graphs.Through the experimental analysis, we concluded that average case is between the best case and worst case and it has no particular relation with the given input n.
+By the analysis we concluded that on increasing the number of repetitions of the the repetitive algorithm, the root of the cubic equation becomes more and more accurate as we decrease the size of segment in the method, and hence as depicted in the error vs repetitions graph, the error in the root becomes less.Therefore we get a exponentially decreasing graph and the accuracy graph is exponentially increasing.
+
+
+\end{document}
