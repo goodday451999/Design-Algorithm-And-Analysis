@@ -10,6 +10,9 @@ Write an efficient algorithm for the following purpose. For a given value of n (
 # Assignment 3:
 Write an efficient algorithm to solve a cubic equation of the form x^3−n=0, for some input value of n, by using a repetitive algorithm. Draw a graph of accuracy/error in the answer vs. total number of repetitions. Do the necessary experimentation and analysis with your algorithm.
 
+# Assignment 4:
+Write an efficient algorithm to merge two given large Heaps of different sizes to create one large Heap. Do this merging using Heap Insertion approach where you insert elements of one Heap, one-by-one, into the other Heap. Trace the movement of elements in every step of the execution of your algorithm.
+
 # Team:
 * Parag Parihar(IIT2016095)
 * Raksit Sai(IIT2016126)
