@@ -13,6 +13,10 @@ Write an efficient algorithm to solve a cubic equation of the form x^3−n=0, fo
 # Assignment 4:
 Write an efficient algorithm to merge two given large Heaps of different sizes to create one large Heap. Do this merging using Heap Insertion approach where you insert elements of one Heap, one-by-one, into the other Heap. Trace the movement of elements in every step of the execution of your algorithm.
 
+# Assignment 6:
+Sort a given array by continuously tracking the max and min elements at every recursive step and placing the max and min elements at the correct position. find the max and min element using divide and conquer approach.
+
+
 # Team:
 * Parag Parihar(IIT2016095)
 * Raksit Sai(IIT2016126)
