@@ -20,6 +20,9 @@ Write an efficient algorithm to merge two given large Heaps of different sizes t
 # Assignment 6:
 Sort a given array by continuously tracking the max and min elements at every recursive step and placing the max and min elements at the correct position. find the max and min element using divide and conquer approach.
 
+# Assignment 7:
+To Store the given n ﬁles in given sequential storage device such that the mean retrieval time is minimized.
+
 
 # Team:
 * Parag Parihar(IIT2016095)
